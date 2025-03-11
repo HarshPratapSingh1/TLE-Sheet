@@ -15,10 +15,8 @@ public class differentDivisors {
 
     public static int nextPrime(int n) {
         while (!isPrime(n)) {
-//        	System.out.println(n);
             n++;
         }
-//        System.out.println(n);
         return n;
     }
 
