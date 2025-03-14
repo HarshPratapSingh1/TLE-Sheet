@@ -28,7 +28,7 @@ public class numbersBox {
 						Nmax=Math.max(Nmax, arr[i][j]);
 					}else {
 						sum+=arr[i][j];
-						Pmin=Math.min(Pmin, arr[i][j]);
+						Pmin=Math.min(Pmin, arr[i][j]);	
 					}
 				}
 //			System.out.println(sum+" "+Nmax+" "+Pmin);
