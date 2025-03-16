@@ -10,6 +10,10 @@ public class buyingTorches {
 			long y=scan.nextLong();
 			long k=scan.nextLong();
 			
+			long m=(k+(k*y)-1+(x-1)-1)/(x-1);
+			System.out.println(m+k);
+			
 		}
+		
 	}
 }
