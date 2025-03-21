@@ -48,6 +48,7 @@ public class CollectingGame {
 	        }
 	        System.out.println();
 	    }
+		
 	}
 	}
 
