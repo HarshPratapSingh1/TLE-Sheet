@@ -17,7 +17,6 @@ public class BuildingAnAquarium {
 			long r=(int)1e10;
 			
 			long mid;
-//			long ans=0;
 			while(l<=r) {
 				mid=l+(r-l)/2;
 				if(isPosi(mid,arr,x)) {
