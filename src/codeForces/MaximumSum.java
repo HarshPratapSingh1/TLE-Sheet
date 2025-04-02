@@ -22,7 +22,7 @@ public class MaximumSum {
 //			System.out.println(Arrays.toString(arr));
 			for(int o=0;o<=k;o++) {
 				long val=prefix[(int)n-o]-prefix[2*(int)(k-o)];
-				System.out.println(val+" "+sum);
+//				System.out.println(val+" "+sum);
 				sum=Math.max(val, sum);
 			}
 			
