@@ -34,16 +34,7 @@ public class Yet_Another_Problem_About_Pairs_Satisfying_An_Inequality {
 			
 		}
 	}
-	public static void print(ArrayList<Pair>l ) {
-//		ArrayList<Pair>l = new ArrayList<>(pq1);
-		
-		for(Pair p : l) System.out.print(p.first+" "+p.second+"   //");
-//		System.out.println();
-//		l = new ArrayList<>(pq2);
-		
-//		for(Pair p : l) System.out.print(p.first+" "+p.second+"   //");
-		System.out.println(" \n--------------------------");
-	}
+
 	public static int binarySearch(ArrayList<Long> li , long val) {
 		int l = 0 , r = li.size() - 1;
 		int ans = -1;
