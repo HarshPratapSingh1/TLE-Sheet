@@ -32,5 +32,6 @@ public class quests {
 			}
 			System.out.println(res);
 		}
+		scan.close();
 	}
 }
