@@ -8,10 +8,8 @@ public class AlyonaAndANarrowFridge {
         int k = scan.nextInt();
 
         int[] arr = new int[n];
-        for (int i = 0 ; i < n ; i++) {
-            arr[i] = scan.nextInt();
-        }
-
+        for (int i = 0 ; i < n ; i++) arr[i] = scan.nextInt();
+        
         int answer = 0;
 
         for (int i = 0 ; i <= n ; i++) {
@@ -19,15 +17,16 @@ public class AlyonaAndANarrowFridge {
             Arrays.sort(temp);
             int sum = 0;
 
-            for (int j = temp.length - 1 ; j >= 0 ; j -= 2) {
-                sum += temp[j];
-            }
+            for (int j = temp.length - 1 ; j >= 0 ; j -= 2) sum += temp[j];
 
             if (sum <= k) {
-                answer = i;
-            } else {
-                break;
+//            	System.out.println(Arrays.toString(temp));
+//            	System.out.println(i+" "+sum);
+            	answer = i;
             }
+            
+            else break;
+            
         }
 
         System.out.println(answer);
