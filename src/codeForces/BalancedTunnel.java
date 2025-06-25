@@ -6,26 +6,25 @@ public class BalancedTunnel {
 		int n = scan.nextInt();
 		int arr[] = new int[n];
 		int brr[] = new int[n];
-		
+		int c[] = new int[n];
+		HashMap<Integer,Integer> map = new HashMap<>();
 		
 		for(int i = 0 ; i < n ; i++) arr[i] = scan.nextInt();
 		
-		
 		for(int i = 0 ; i < n ; i++) brr[i] = scan.nextInt();
 		
-		long ans = 0 , cnt = 0;
-		HashSet<Integer> set = new HashSet<>();
+		for(int i = 0 ; i < n ; i++) map.put(brr[i], i);
 		
-		for(int i = 0 ; i < n ; i++) {
-			if(set.contains(brr[i])) continue;
-			
-			while(arr[(int)cnt] != brr[i]) {
-				set.add(arr[(int)cnt]);
-				ans++;
-				cnt++;
-			}
-			cnt++;
+		for(int i = 0 ; i < n ; i++) c[i] = map.get(arr[i]) + 1;
+		
+				
+		int max = c[0] ;
+		int cnt = 0;
+		for(int i = 1 ; i < n ; i++) {
+			if(max > c[i])cnt++;
+			max = Math.max(max, c[i]);
 		}
-		System.out.println(ans);
+		
+		System.out.println(cnt);
 	}
 }

@@ -22,19 +22,9 @@ public class ArrayElimination {
 					else break;
 				}
 			}
-//			System.out.println(Arrays.toString(freq));
-//			boolean flag = true;
-//			for(int i = 0 ;i < val ; i++) {
-//				if(freq[i] != 0) {flag = false; break;}
-//			}
-//			if(flag) {
-//				for(int i = 0 ; i < n ; i++) System.out.print(i+1+" ");
-//				System.out.println();
-//				continue;
-//			}
  
 			TreeSet<Integer> set = new TreeSet<>();
-//			set.add(1);
+
 			for(int i = 1 ; i <= n ; i++) {
 				boolean flag = true;
 				for(int j = 0 ; j < val ; j++) {
