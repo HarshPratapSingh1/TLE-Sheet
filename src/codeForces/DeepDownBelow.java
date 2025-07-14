@@ -9,7 +9,6 @@ public class DeepDownBelow {
 			int n = scan.nextInt();
 			ArrayList<Pair> li = new ArrayList<>();
 			
-			
 			for(int i = 0 ; i < n ; i++) {
 				int val = scan.nextInt();
 				long max = 0;
@@ -27,11 +26,8 @@ public class DeepDownBelow {
 			while(l <= r) {
 				long mid = l + (r - l) /2;
 				if(isPosi(mid,li)) {
-//					System.out.println(1+"-> "+mid+" "+l+" "+r);
-//					ans = mid;
 					r = mid - 1;
 				}else {
-//					System.out.println(2+"-> "+mid+" "+l+" "+r);
 					ans = mid;
 					l = mid + 1;
 				}
