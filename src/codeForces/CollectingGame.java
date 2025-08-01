@@ -52,11 +52,11 @@ public class CollectingGame {
 	}
 	}
 
-	class Pair {
+class Pair {
 	long first, second;
 
 	Pair(long first, long second) {
 	    this.first = first;
 	    this.second = second;
 	}
-	}
+}
