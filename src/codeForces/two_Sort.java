@@ -75,18 +75,14 @@ public class two_Sort {
 				   elementCnt++;
 			   }
 			   else {
-				   if(elementCnt > k) {
-					   cnt += (elementCnt - k);
-				   }
+				   if(elementCnt > k) cnt += (elementCnt - k);
+				  
 				   elementCnt = 0;
 			   }
-//			   System.out.println(elementCnt);
 		   }
-//		   System.out.println(elementCnt);
-		   if(elementCnt > 0) {
-//			   if(elementCnt != n)elementCnt++;
-			   if(elementCnt > k)cnt += (elementCnt - k);
-		   }
+
+		   if(elementCnt > 0 && elementCnt > k) cnt += (elementCnt - k);
+		   
 		   System.out.println(cnt);
 	   }
    }
