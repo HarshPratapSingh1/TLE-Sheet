@@ -1,10 +1,7 @@
-package codeForces;
-
 import java.io.*;
 import java.util.*;
 
-public class tape {
-	// Fast Input and Output
+public class queen {
     static class FastIO {
         BufferedReader br;
         StringTokenizer st;
@@ -54,25 +51,36 @@ public class tape {
             System.out.println(s);
         }
     }
+
     static FastIO scan = new FastIO();
 
-    public static void main(String[]args) {
-    	int n = scan.nextInt();
-    	long m = scan.nextLong();
-    	int k = scan.nextInt();
-    	
-    	long arr[] = new long[n];
-    	for(int i = 0 ; i < n ; i++) arr[i] = scan.nextLong();
-    	
-    	long difArr[] = new long[n - 1];
-    	
-    	for(int i = 0 ; i < n - 1 ; i++) difArr[i] = arr[i + 1] - arr[i] - 1;
-    	
-    	int ans = n;
-    	Arrays.sort(difArr);
-    	
-    	for(int i = 0 ; i < n-k; i++) ans += difArr[i];
-    	
-    	scan.println(String.valueOf(ans));
+    public static void main(String[] args) {
+        int n = scan.nextInt();
+        HashMap<Integer, ArrayList<Integer>> child = new HashMap<>();
+
+        HashSet<Integer> noRespect = new HashSet<>();
+        for (int i = 1; i <= n; i++) {
+            int p = scan.nextInt();
+            int c = scan.nextInt();
+
+            if(!child.containsKey(p)) child.put(p, new ArrayList<>());
+            child.get(p).add(i);
+
+            if (c == 1)
+                noRespect.add(i);
+        }
+
+        TreeSet<Integer> ans = new TreeSet<>();
+        for (int it : noRespect) {
+            ArrayList<Integer> c = child.getOrDefault(it, new ArrayList<>());
+            boolean flag = false;
+            for(int i : c) {
+                if(!noRespect.contains(i)) flag = true;
+            }
+            if (!(flag)) ans.add(it);
+            
+        }
+        for(int it:ans) System.out.print(it+" ");
+        System.out.println(ans.size() == 0 ? "-1":"");
     }
 }
