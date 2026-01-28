@@ -2,14 +2,24 @@ import java.util.*;
 import java.io.*;
 
 public class MaximumDistanceToPort {
-
     static FastIO scan;
     static ArrayList<ArrayList<Integer>> adj;
+    static final int MOD = 1_000_000_007;
+    static final long LINF = (long) 1e18;
 
     public static void main(String[] args) throws Exception {
         System.setIn(new FileInputStream("input.txt"));
         System.setOut(new PrintStream("output.txt"));
         scan = new FastIO();
+        int t = 1;
+        // t = scan.nextInt();
+        while (t-- > 0) {
+            solve();
+        }
+        scan.close();
+    }
+
+    static void solve() throws IOException {
         int n = scan.nextInt();
         int m = scan.nextInt();
         int k = scan.nextInt();
@@ -43,12 +53,13 @@ public class MaximumDistanceToPort {
             int u = q.poll();
 
             for (int v : adj.get(u)) {
-                if (dis[v] == -1) { 
+                if (dis[v] == -1) {
                     dis[v] = dis[u] + 1;
                     q.add(v);
                 }
             }
         }
+
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 2; i <= n; i++) {
             if (map.containsKey(arr[i])) {
@@ -72,142 +83,89 @@ public class MaximumDistanceToPort {
         System.out.println();
     }
 
-    static class duo {
-        int val, dist;
-
-        duo(int val, int dist) {
-            this.val = val;
-            this.dist = dist;
-        }
-    }
-
-    // ---------------------- UTILITY METHODS BELOW ----------------------
-
+    // ---------------------- FAST I/O ----------------------
     static class FastIO {
-        BufferedReader br;
-        StringTokenizer st;
+        private final InputStream in = System.in;
+        private final byte[] buffer = new byte[1 << 16];
+        private int ptr = 0, len = 0;
+        private final PrintWriter out = new PrintWriter(System.out);
 
-        public FastIO() {
-            br = new BufferedReader(new InputStreamReader(System.in));
-        }
-
-        String next() {
-            while (st == null || !st.hasMoreElements()) {
-                try {
-                    st = new StringTokenizer(br.readLine());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        private int readByte() throws IOException {
+            if (ptr >= len) {
+                ptr = 0;
+                len = in.read(buffer);
+                if (len <= 0)
+                    return -1;
             }
-            return st.nextToken();
+            return buffer[ptr++];
         }
 
-        int nextInt() {
-            return Integer.parseInt(next());
+        public String next() throws IOException {
+            int c = readByte();
+            while (c >= 0 && c <= 32)
+                c = readByte();
+            if (c == -1)
+                return null;
+            StringBuilder sb = new StringBuilder();
+            while (c > 32) {
+                sb.append((char) c);
+                c = readByte();
+            }
+            return sb.toString();
         }
 
-        long nextLong() {
-            return Long.parseLong(next());
+        public int nextInt() throws IOException {
+            int c = readByte();
+            while (c >= 0 && c <= 32)
+                c = readByte();
+            if (c == -1)
+                return 0;
+            int s = 1;
+            if (c == '-') {
+                s = -1;
+                c = readByte();
+            }
+            int v = 0;
+            while (c > 32) {
+                v = v * 10 + (c - '0');
+                c = readByte();
+            }
+            return v * s;
         }
 
-        double nextDouble() {
+        public long nextLong() throws IOException {
+            int c = readByte();
+            while (c >= 0 && c <= 32)
+                c = readByte();
+            if (c == -1)
+                return 0;
+            int s = 1;
+            if (c == '-') {
+                s = -1;
+                c = readByte();
+            }
+            long v = 0;
+            while (c > 32) {
+                v = v * 10 + (c - '0');
+                c = readByte();
+            }
+            return v * s;
+        }
+
+        public double nextDouble() throws IOException {
             return Double.parseDouble(next());
         }
 
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
+        public void pn(Object o) {
+            out.println(o);
         }
 
-        void print(String s) {
-            System.out.print(s);
+        public void p(Object o) {
+            out.print(o);
         }
 
-        void println(String s) {
-            System.out.println(s);
+        public void close() {
+            out.close();
         }
-    }
-
-    static void debug(Object... o) {
-        System.err.println(Arrays.deepToString(o));
-    }
-
-    static long gcd(long a, long b) {
-        return (b == 0) ? a : gcd(b, a % b);
-    }
-
-    static long lcm(long a, long b) {
-        return (a / gcd(a, b)) * b;
-    }
-
-    static boolean isPrime(int n) {
-        if (n <= 1)
-            return false;
-        if (n <= 3)
-            return true;
-        if (n % 2 == 0 || n % 3 == 0)
-            return false;
-        for (int i = 5; i * i <= n; i += 6)
-            if (n % i == 0 || n % (i + 2) == 0)
-                return false;
-        return true;
-    }
-
-    static boolean[] sieve(int n) {
-        boolean[] isPrime = new boolean[n + 1];
-        Arrays.fill(isPrime, true);
-        isPrime[0] = isPrime[1] = false;
-        for (int i = 2; i * i <= n; i++)
-            if (isPrime[i])
-                for (int j = i * i; j <= n; j += i)
-                    isPrime[j] = false;
-        return isPrime;
-    }
-
-    static long modExp(long base, long exp, long mod) {
-        long result = 1;
-        base %= mod;
-        while (exp > 0) {
-            if ((exp & 1) == 1)
-                result = (result * base) % mod;
-            base = (base * base) % mod;
-            exp >>= 1;
-        }
-        return result;
-    }
-
-    static long factorialMod(int n, int mod) {
-        long result = 1;
-        for (int i = 2; i <= n; i++)
-            result = (result * i) % mod;
-        return result;
-    }
-
-    static int[] prefixSum(int[] arr) {
-        int n = arr.length;
-        int[] prefix = new int[n];
-        prefix[0] = arr[0];
-        for (int i = 1; i < n; i++)
-            prefix[i] = prefix[i - 1] + arr[i];
-        return prefix;
-    }
-
-    static int binarySearch(int[] arr, int target) {
-        int left = 0, right = arr.length - 1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-            if (arr[mid] == target)
-                return mid;
-            if (arr[mid] < target)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return -1;
     }
 }
